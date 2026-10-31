@@ -294,6 +294,32 @@
  #light-inside-preview .park-composition .park-object{height:auto}
  #light-inside-preview .shopper-copy{margin-top:26px}
 }
+
+/* Fit laptop windows while retaining the freeform collage and phone layout. */
+@media(min-width:701px){
+ #light-inside-preview .home{padding:20px clamp(24px,4.5vw,72px) 16px;min-height:100svh}
+ #light-inside-preview .home h1,#light-inside-preview .home footer strong{font-size:clamp(42px,4.4vw,64px)}
+ #light-inside-preview .stage{height:max(360px,calc(100svh - 162px));margin-top:8px}
+ #light-inside-preview .strip{width:min(95px,calc((100svh - 162px)*.148))}
+ #light-inside-preview .cat-thumb{width:min(104px,calc((100svh - 162px)*.162))}
+ #light-inside-preview .park-thumb{width:min(115px,calc((100svh - 162px)*.18))}
+ #light-inside-preview .hands-thumb{width:min(92px,calc((100svh - 162px)*.144))}
+ #light-inside-preview .exhibit-thumb{width:min(130px,calc((100svh - 162px)*.203))}
+ #light-inside-preview .surprise-thumb{width:min(112px,calc((100svh - 162px)*.175))}
+ #light-inside-preview .bar-thumb{width:min(108px,calc((100svh - 162px)*.169))}
+ #light-inside-preview .flip-thumb{width:min(110px,calc((100svh - 162px)*.172))}
+ #light-inside-preview .dynasty-thumb{width:min(125px,calc((100svh - 162px)*.195))}
+ #light-inside-preview .roommates-thumb{width:min(105px,calc((100svh - 162px)*.164))}
+ #light-inside-preview .home footer{margin-top:8px}
+ #light-inside-preview .day{padding:16px 5% 20px;min-height:100svh}
+ #light-inside-preview .back{padding:10px 0;margin-bottom:12px}
+ #light-inside-preview .day>div[class$="-composition"]{width:var(--memory-width,100%);max-width:680px}
+ #light-inside-preview .music-area{margin-top:16px}
+ #light-inside-preview .vinyl-disc{width:76px;height:76px;flex-basis:76px}
+ #light-inside-preview .cat-layout{margin:12px auto 0;max-width:680px}
+ #light-inside-preview .cat-layout>img{max-height:calc(100svh - 140px);object-fit:contain}
+ #light-inside-preview .park-composition .park-object{height:auto}
+}
 </style>
 <section class="home">
 <h1>свет</h1>
@@ -333,4 +359,39 @@ root.querySelectorAll('.back').forEach(button=>button.addEventListener('click',(
 (()=>{const root=document.getElementById('light-inside-preview'),button=root.querySelector('.photo-flip'),front=button.querySelector('.photo-face-front'),back=button.querySelector('.photo-face-back');function setFlipped(flipped){button.classList.toggle('is-flipped',flipped);button.setAttribute('aria-pressed',String(flipped));button.setAttribute('aria-label',flipped?'Вернуть фотографию со страницы брендбука':'Перевернуть фотографию');front.setAttribute('aria-hidden',String(flipped));back.setAttribute('aria-hidden',String(!flipped))}button.addEventListener('click',()=>setFlipped(!button.classList.contains('is-flipped')));button.addEventListener('keydown',e=>{if(e.key==='Escape')setFlipped(false)});root.querySelectorAll('.back').forEach(b=>b.addEventListener('click',()=>setFlipped(false)))})();
 </script>
 </div>
+<script>
+/* Size complete memory compositions, including their interactive overlays. */
+(()=>{
+ const root=document.getElementById('light-inside-preview');
+ const desktop=matchMedia('(min-width:701px)');
+ let frame;
+ const outerHeight=element=>{
+   const style=getComputedStyle(element);
+   return element.getBoundingClientRect().height+parseFloat(style.marginTop||0)+parseFloat(style.marginBottom||0);
+ };
+ function fit(){
+   root.querySelectorAll('.day').forEach(day=>{
+     const composition=day.querySelector(':scope > div[class$="-composition"]');
+     if(!composition)return;
+     if(!desktop.matches){composition.style.removeProperty('--memory-width');return}
+     if(day.hidden)return;
+     const image=composition.querySelector('img');
+     if(!image.naturalWidth||!image.naturalHeight)return;
+     const style=getComputedStyle(day);
+     const paddingY=parseFloat(style.paddingTop)+parseFloat(style.paddingBottom);
+     const paddingX=parseFloat(style.paddingLeft)+parseFloat(style.paddingRight);
+     const extras=[...day.children].filter(el=>el!==composition&&el.tagName!=='SCRIPT').reduce((sum,el)=>sum+outerHeight(el),0);
+     const available=Math.max(160,innerHeight-paddingY-extras-12);
+     const width=Math.min(680,day.clientWidth-paddingX,available*image.naturalWidth/image.naturalHeight);
+     composition.style.setProperty('--memory-width',width+'px');
+   });
+ }
+ function schedule(){cancelAnimationFrame(frame);frame=requestAnimationFrame(fit)}
+ addEventListener('resize',schedule);
+ root.querySelectorAll('.day img').forEach(img=>img.addEventListener('load',schedule));
+ new MutationObserver(schedule).observe(root,{subtree:true,attributes:true,attributeFilter:['hidden']});
+ desktop.addEventListener('change',schedule);
+ schedule();
+})();
+</script>
 </body></html>
