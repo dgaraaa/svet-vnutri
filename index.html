@@ -483,9 +483,86 @@
 @media(prefers-reduced-motion:reduce){
  #light-inside-preview .women-rear{transition:none;transform:none!important}
 }
+
+/* Editorial collage grid: shared rhythm, asymmetric objects, room to scroll. */
+#light-inside-preview .home{padding:clamp(28px,4vw,64px) clamp(20px,5vw,80px) 32px;min-height:100svh}
+#light-inside-preview .home h1{font-size:clamp(64px,8vw,112px);line-height:.95;letter-spacing:-.065em}
+#light-inside-preview .home>.hint{position:static;display:block;margin:22px 0 0;font:11px/1.6 monospace;letter-spacing:0;opacity:.75}
+#light-inside-preview .home .stage{
+ display:grid;grid-template-columns:repeat(12,minmax(0,1fr));
+ grid-template-rows:repeat(14,clamp(58px,5.5vw,84px));gap:10px clamp(12px,1.5vw,24px);
+ height:auto;max-width:1280px;margin:64px auto 0;align-items:center;
+}
+#light-inside-preview .stage>button{
+ position:relative;inset:auto;width:100%;max-width:var(--cover-width,160px);height:100%;max-height:100%;
+ min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center;
+ justify-self:center;align-self:center;padding:0;border:0;background:transparent;
+}
+#light-inside-preview .stage>button img{display:block;width:100%;height:100%;object-fit:contain}
+#light-inside-preview .stage .scattered-word{position:relative;inset:auto;place-self:center;font-size:11px;line-height:1.5;letter-spacing:1px;white-space:nowrap}
+#light-inside-preview .stage>.strip{grid-area:1 / 2 / 5 / 4;--cover-width:112px}
+#light-inside-preview .stage>.women-thumb{grid-area:1 / 6 / 4 / 7;--cover-width:68px}
+#light-inside-preview .stage>.ace-thumb{grid-area:2 / 9 / 4 / 10;--cover-width:80px}
+#light-inside-preview .stage>.cat-thumb{grid-area:1 / 11 / 4 / 13;--cover-width:150px}
+#light-inside-preview .stage>.hands-thumb{grid-area:5 / 1 / 9 / 3;--cover-width:124px}
+#light-inside-preview .stage>.park-thumb{grid-area:5 / 6 / 8 / 8;--cover-width:170px}
+#light-inside-preview .stage>.exhibit-thumb{grid-area:6 / 10 / 10 / 13;--cover-width:188px}
+#light-inside-preview .stage>.bar-thumb{grid-area:8 / 3 / 12 / 5;--cover-width:160px}
+#light-inside-preview .stage>.surprise-thumb{grid-area:9 / 7 / 12 / 9;--cover-width:164px}
+#light-inside-preview .stage>.flip-thumb{grid-area:11 / 11 / 15 / 13;--cover-width:170px}
+#light-inside-preview .stage>.roommates-thumb{grid-area:12 / 1 / 15 / 3;--cover-width:135px}
+#light-inside-preview .stage>.dynasty-thumb{grid-area:13 / 6 / 15 / 9;--cover-width:180px}
+#light-inside-preview .stage>.word-1{grid-area:1 / 1 / 2 / 3;justify-self:start}
+#light-inside-preview .stage>.word-2{grid-area:2 / 4 / 3 / 6}
+#light-inside-preview .stage>.word-3{grid-area:5 / 10 / 6 / 13}
+#light-inside-preview .stage>.word-4{grid-area:5 / 4 / 6 / 6}
+#light-inside-preview .stage>.word-5{grid-area:10 / 1 / 11 / 3;font-size:10px;letter-spacing:.5px}
+#light-inside-preview .stage>.word-6{grid-area:10 / 5 / 11 / 7}
+#light-inside-preview .stage>.word-7{grid-area:14 / 9 / 15 / 11}
+#light-inside-preview .stage>.word-8{grid-area:13 / 4 / 14 / 6}
+#light-inside-preview .stage>.word-9{grid-area:7 / 8 / 8 / 10}
+#light-inside-preview .home footer{max-width:1280px;margin:72px auto 0;padding-top:32px;gap:24px;align-items:flex-end}
+#light-inside-preview .home footer strong{font-size:clamp(64px,8vw,112px);line-height:.95;letter-spacing:-.065em}
+#light-inside-preview .home footer span{font-size:11px;line-height:1.7}
+@media(min-width:701px) and (max-width:1000px){
+ #light-inside-preview .stage .scattered-word{font-size:10px;letter-spacing:.4px}
+ #light-inside-preview .stage>.word-5{font-size:9px;letter-spacing:0}
+}
+@media(max-width:700px){
+ #light-inside-preview .home{padding:28px max(20px,env(safe-area-inset-left)) max(28px,env(safe-area-inset-bottom))}
+ #light-inside-preview .home h1{font-size:64px}
+ #light-inside-preview .home>.hint{font-size:11px;margin-top:18px}
+ #light-inside-preview .home .stage{grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:repeat(37,26px);gap:12px;max-width:460px;margin-top:42px}
+ #light-inside-preview .stage .scattered-word{font-size:10px;letter-spacing:.6px}
+ #light-inside-preview .stage>.strip{grid-area:2 / 1 / 7 / 3;--cover-width:88px}
+ #light-inside-preview .stage>.cat-thumb{grid-area:3 / 5 / 6 / 7;--cover-width:96px}
+ #light-inside-preview .stage>.ace-thumb{grid-area:6 / 3 / 9 / 5;--cover-width:70px}
+ #light-inside-preview .stage>.women-thumb{grid-area:7 / 5 / 11 / 7;--cover-width:46px}
+ #light-inside-preview .stage>.hands-thumb{grid-area:10 / 1 / 15 / 3;--cover-width:86px}
+ #light-inside-preview .stage>.park-thumb{grid-area:12 / 4 / 16 / 7;--cover-width:128px}
+ #light-inside-preview .stage>.exhibit-thumb{grid-area:18 / 1 / 23 / 4;--cover-width:124px}
+ #light-inside-preview .stage>.surprise-thumb{grid-area:19 / 4 / 23 / 7;--cover-width:124px}
+ #light-inside-preview .stage>.bar-thumb{grid-area:26 / 1 / 30 / 4;--cover-width:130px}
+ #light-inside-preview .stage>.flip-thumb{grid-area:28 / 4 / 32 / 7;--cover-width:124px}
+ #light-inside-preview .stage>.roommates-thumb{grid-area:33 / 1 / 36 / 3;--cover-width:90px}
+ #light-inside-preview .stage>.dynasty-thumb{grid-area:34 / 3 / 36 / 7;--cover-width:145px}
+ #light-inside-preview .stage>.word-1{grid-area:1 / 4 / 2 / 7;justify-self:center}
+ #light-inside-preview .stage>.word-2{grid-area:8 / 1 / 9 / 4}
+ #light-inside-preview .stage>.word-3{grid-area:11 / 3 / 12 / 7}
+ #light-inside-preview .stage>.word-4{grid-area:16 / 1 / 17 / 4}
+ #light-inside-preview .stage>.word-5{grid-area:24 / 1 / 25 / 7;font-size:10px;letter-spacing:.6px}
+ #light-inside-preview .stage>.word-6{grid-area:26 / 4 / 27 / 7}
+ #light-inside-preview .stage>.word-7{grid-area:37 / 4 / 38 / 7}
+ #light-inside-preview .stage>.word-8{grid-area:31 / 1 / 32 / 4}
+ #light-inside-preview .stage>.word-9{grid-area:17 / 4 / 18 / 7}
+ #light-inside-preview .home footer{margin-top:48px;padding-top:16px;gap:12px}
+ #light-inside-preview .home footer strong{font-size:clamp(42px,13vw,70px)}
+ #light-inside-preview .home footer span{font-size:9px;line-height:1.6;max-width:140px}
+}
 </style>
 <section class="home">
 <h1>свет</h1>
+<span class="hint">открыть воспоминание ↗</span>
 <div class="stage">
 <span class="scattered-word word-1">БЫТЬ РЯДОМ</span>
 <span class="scattered-word word-2">ЗАМЕЧАТЬ</span>
@@ -498,7 +575,7 @@
 <span class="scattered-word word-9">СЧАСТЬЕ</span>
 <button class="cat-thumb cursor-interaction" type="button" aria-label="Открыть воспоминание о кошечке"><img src="assets/inline-1.png" alt="Зевающая кошечка"></button><button class="park-thumb cursor-interaction" type="button" aria-label="Открыть день с прогулкой и шоппером"><img src="assets/inline-2.jpg" alt="Солнечный парк"></button><button class="hands-thumb" type="button" aria-label="Открыть воспоминание с любимой песней"><img src="assets/hands-thumb.webp" alt="Двое держатся за руки"></button>
 <button class="strip cursor-interaction" type="button" aria-label="Открыть день с друзьями"><img src="assets/inline-3.png" alt="Фотополоска с друзьями"></button>
-<button class="exhibit-thumb" type="button" aria-label="Открыть воспоминание о выставке"><img src="assets/exhibit-thumb.webp" alt="Графика blazar"></button><button class="surprise-thumb" type="button" aria-label="Открыть воспоминание о сюрпризе"><img src="assets/surprise-thumb.webp" alt="Две фотополоски с парой"></button><button class="bar-thumb" type="button" aria-label="Открыть воспоминание о любимом баре"><img src="assets/bar-thumb.webp" alt="Вечер в баре в красном свете"></button><button class="flip-thumb" type="button" aria-label="Открыть воспоминание с переворотом"><img src="assets/flip-thumb.webp" alt="Совместная фотография"></button><button class="dynasty-thumb" type="button" aria-label="Открыть воспоминание с песней ДИНАСТИЯ"><img src="assets/never-give-up.webp" alt="Бумажная записка never give up!"></button><button class="roommates-thumb" type="button" aria-label="Открыть воспоминание с песней Roommates"><img src="assets/we-cover.webp" alt="Рисунок обнимающейся пары с надписью WE"></button><button class="women-thumb" type="button" aria-label="Открыть воспоминание: мои любимые женщины"><img src="assets/birch-memory.svg" alt="Два ствола берёз"></button><button class="ace-thumb" type="button" aria-label="Открыть воспоминание с тузом червей"><img src="assets/ace-card.svg" alt="Туз червей"></button><span class="hint">открыть воспоминание ↗</span>
+<button class="exhibit-thumb" type="button" aria-label="Открыть воспоминание о выставке"><img src="assets/exhibit-thumb.webp" alt="Графика blazar"></button><button class="surprise-thumb" type="button" aria-label="Открыть воспоминание о сюрпризе"><img src="assets/surprise-thumb.webp" alt="Две фотополоски с парой"></button><button class="bar-thumb" type="button" aria-label="Открыть воспоминание о любимом баре"><img src="assets/bar-thumb.webp" alt="Вечер в баре в красном свете"></button><button class="flip-thumb" type="button" aria-label="Открыть воспоминание с переворотом"><img src="assets/flip-thumb.webp" alt="Совместная фотография"></button><button class="dynasty-thumb" type="button" aria-label="Открыть воспоминание с песней ДИНАСТИЯ"><img src="assets/never-give-up.webp" alt="Бумажная записка never give up!"></button><button class="roommates-thumb" type="button" aria-label="Открыть воспоминание с песней Roommates"><img src="assets/we-cover.webp" alt="Рисунок обнимающейся пары с надписью WE"></button><button class="women-thumb" type="button" aria-label="Открыть воспоминание: мои любимые женщины"><img src="assets/birch-memory.svg" alt="Два ствола берёз"></button><button class="ace-thumb" type="button" aria-label="Открыть воспоминание с тузом червей"><img src="assets/ace-card.svg" alt="Туз червей"></button>
 </div>
 <footer><span>личный дневник<br>коллекция тёплых моментов</span><strong>внутри</strong></footer>
 </section>
